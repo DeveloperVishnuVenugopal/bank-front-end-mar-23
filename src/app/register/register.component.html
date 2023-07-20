@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+
+<div class="container-fluid mt-3">
+    <h1 class="text-primary">
+        Register Page 
+    </h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae sed porro repudiandae similique nesciunt ipsam
+        error eos doloribus beatae itaque. Obcaecati reprehenderit illum perferendis incidunt numquam dolorum! Beatae,
+        cupiditate corporis!</p>
+    <div class="container mt-5">
+        <div class="row">
+       
+            <div class="col-md-6">
+                <form [formGroup]="registerForm" class="border p-3 rounded" (ngSubmit)="register()"  >
+                    <!-- username -->
+                    <div class="form-floating mb-3">
+
+                        <input name="username" formControlName="username" type="text" class="form-control"
+                            id="floatingInputname" placeholder="Username">
+                        <label for="floatingInputname">Username</label>
+                    </div>
+                    <!-- username validation -->
+                    <div *ngIf="this.registerForm.get('username')?.touched&&this.registerForm.get('username')?.errors" class="mb-3 text-danger">
+                        invalid username
+                    </div>
+
+                    <!-- Acno -->
+
+                    <div class="form-floating mb-3">
+
+                        <input name="acno" formControlName="acno" type="text" class="form-control"
+                            id="floatingInputacno" placeholder="Account Number">
+                        <label for="floatingInputacno">Account Number</label>
+                    </div>
+                      <!-- acno validation -->
+                      <div *ngIf="this.registerForm.get('acno')?.touched&&this.registerForm.get('acno')?.errors" class="mb-3 text-danger">
+                        invalid Account number
+                    </div>
+                    <!-- Password -->
+                    <div class="form-floating ">
+                        <input name="pswd" formControlName="pswd" type="password" class="form-control"
+                            id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                      <!-- Password validation -->
+                      <div *ngIf="this.registerForm.get('pswd')?.touched&&this.registerForm.get('pswd')?.errors" class="mb-3 text-danger">
+                        invalid Password
+                    </div>
+
+                    <div class="d-flex mt-2 align-item-center">
+                        <button type="submit" class="btn btn-primary me-3"> Register</button>
+
+                        <p > Already user? Click here to<a routerLink="/user/login"> Login</a></p>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-md-6">
+                <img style="width: 80%; height: 300px;" src="https://ugokawaii.com/?sdm_process_download=1&download_id=3414" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5"></div>
+
+<app-footer></app-footer>

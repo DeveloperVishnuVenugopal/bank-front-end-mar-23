@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid ">
+        <a class="navbar-brand" routerLink="">Union Bank</a>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a data-bs-toggle="modal" class="dropdown-item" href="#deletemyacno"><i class="fa-sharp fa-solid fa-trash"></i> My Account</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign
+                                Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row p-5">
+        <div class="col-md-6">
+            <h1 class="welcome text-center fw-bolder">Welcome <span> {{user}} </span>...</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, aut libero. Dolorem doloribus maxime
+                aut fugiat et? Unde quidem iusto ratione necessitatibus hic, et iure quae eius, assumenda repellendus
+                recusandae?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam corrupti facere cum, ex autem
+                praesentium aut asperiores aspernatur rerum, quo, nihil magni voluptatibus. Vero, tempora. Ipsum
+                recusandae dolore cupiditate non?</p>
+        </div>
+        <div class="col-md-6">
+            <img style="width:90%;height: 200px;"
+                src="https://www.digipay.guru/static/1686233a073a50210147f74ea4d0f4f8/20801/agency-banking-main.jpg"
+                alt="">
+        </div>
+    </div>
+</div>
+
+<!-- services -->
+<h1 class="heading text-center fw-bolder m-5">Our Services</h1>
+<div class="d-flex align-item-center container Services">
+    <!-- balance -->
+    <div (click)="getbalance()" class="card btn" style="width: 18rem;" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample">
+        <img src="https://www.freeiconspng.com/thumbs/enquiry-icon-png/3d-man-enquiry-icon-png-0.png"
+            class="card-img-top" alt="...">
+
+    </div>
+    <!-- transfer -->
+    <div class="card btn" style="width: 18rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <img src="https://www.about-payments.com/logo/300/225/2855" class="card-img-top" alt="...">
+    </div>
+    <!-- transaction -->
+    <div routerLink="/user/transactions" class="card btn" style="width: 18rem;">
+        <img src="https://paytmblogcdn.paytm.com/wp-content/uploads/2021/11/12_-5-steps-to-check-Paytm-wallet-transaction-history.jpg"
+            class="card-img-top" alt="...">
+
+    </div>
+</div>
+
+<!-- footer -->
+<app-footer></app-footer>
+
+<!-- offcanvas -->
+<div *ngIf="balancesuccessStatus" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bolder text-primary" id="offcanvasExampleLabel">Balance Enquiry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSxCvkB4RKMDdGEb7BpUtVAFnygmHfTk9hYg&usqp=CAU"
+                    alt="">
+            </div>
+            <h3>Hi<span style="color: orange;"> {{user}}</span>, </h3>
+            <!-- <h5>Union Bank </h5>
+            <h5>{{acno}}</h5> -->
+            <h4>Account Balance</h4>
+            <h5>RS : <span class="text-danger">{{balance}}</span></h5>
+
+        </div>
+    </div>
+</div>
+
+<!-- transaction - -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary fw-bolder" id="staticBackdropLabel">Fund Transfer Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <img src="https://i.pinimg.com/originals/a8/39/d9/a839d92f34f246dbb01a0d7bd4f16a18.jpg" alt="">
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="transferForm">
+                    <!-- credit acno   -->
+                    <div class="form-floating mb-3">
+                        <input name="creditacno" type="text" formControlName="creditacno" class="form-control"
+                            id="floatingInput" placeholder="Credit Account Number">
+                        <label for="floatingInput">Credit Account Number</label>
+                    </div>
+                    <!-- acno validation -->
+                    <div *ngIf="this.transferForm.get('creditacno')?.touched&&this.transferForm.get('creditacno')?.errors"
+                        class="mb-3 text-danger">
+                        invalid Credit Account number
+                    </div>
+                    <!-- amound -->
+                    <div class="form-floating ">
+                        <input name="amount" type="number" formControlName="amount" class="form-control"
+                            id="floatingamt" placeholder="Amount">
+                        <label for="floatingamt">Amount</label>
+                    </div>
+                    <!-- Amount validation -->
+                    <div *ngIf="transferForm.get('amount')?.touched&&this.transferForm.get('amount')?.errors"
+                        class="mb-3 text-danger">
+                        invalid Account number
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="transfer()">Transfer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  -->
+<!--delete Modal -->
+<div class="modal fade" id="deletemyacno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fw-bolder fs-3" id="staticBackdropLabel">Delete Account</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure want to delete account?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="deleteacount()" class="btn btn-danger" data-bs-dismiss="modal">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>

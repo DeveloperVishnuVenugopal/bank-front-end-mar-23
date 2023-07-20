@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+
+<div class="container-fluid mt-3">
+    <h1 class="text-primary">
+        Login Page
+    </h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae sed porro repudiandae similique nesciunt ipsam
+        error eos doloribus beatae itaque. Obcaecati reprehenderit illum perferendis incidunt numquam dolorum! Beatae,
+        cupiditate corporis!</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img style="width: 100%; height: 220px;"
+                    src="https://media4.giphy.com/media/nVE8OaIGkUhf7rkieR/200w.gif?cid=6c09b952csuwk7hqpdeu7xnid33kb2fm79gh4nzfb1wlfa8b&ep=v1_gifs_search&rid=200w.gif&ct=g"
+                    alt="">
+            </div>
+            <div class="col-md-6">
+                <form [formGroup]="loginForm" action="" class="border p-3 rounded" (ngSubmit)="login()">
+
+                    <!-- Account Number -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="acno" class="form-control" id="floatingInputacno"
+                            placeholder="Account Number">
+                        <label for="floatingInputacno">Account Number</label>
+                    </div>
+                    <!-- acno validation -->
+                    <div *ngIf="this.loginForm.get('acno')?.touched&&this.loginForm.get('acno')?.errors"
+                        class="mb-3 text-danger">
+                        invalid Account number
+                    </div>
+                    <!-- Password -->
+                    <div class="form-floating ">
+                        <input type="password" formControlName="pswd" class="form-control" id="floatingPassword"
+                            placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <!-- Password validation -->
+                    <div *ngIf="this.loginForm.get('pswd')?.touched&&this.loginForm.get('pswd')?.errors"
+                        class="mb-3 text-danger">
+                        invalid Password
+                    </div>
+
+                    <div class="d-flex m-2">
+                        <button type="submit" class="btn btn-primary">Log In
+                            <div *ngIf="islogined" class="spinner-border text-light ms-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                        <p class="m-2"> Are you a new youser? Click here to<a routerLink="/user/register"> Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5"></div>
+
+<app-footer></app-footer>

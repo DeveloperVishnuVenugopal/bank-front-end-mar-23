@@ -1,0 +1,10 @@
+header {
+    width: 100%;
+    height: 200px;
+    background-image: url('https://cdn5.vectorstock.com/i/1000x1000/21/79/open-banking-platform-concept-banner-header-vector-24192179.jpg');
+    background-size:  contain;
+    background-attachment: fixed;
+    /* background-repeat: no-repeat; */
+    background-size: 100% 100% ;
+    background-position: 0px 470px; 
+}

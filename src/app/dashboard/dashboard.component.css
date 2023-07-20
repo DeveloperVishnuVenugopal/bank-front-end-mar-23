@@ -1,0 +1,25 @@
+.Services{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+div img{
+    width: 100%;
+    height: 300px;
+}
+.heading{
+    align-items: center;
+    color: green;
+    justify-content: center;
+}
+h1 .welcome{
+    color: black;
+}
+h1 span{
+    color: orange;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

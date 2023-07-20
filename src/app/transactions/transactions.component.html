@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid ">
+        <a class="navbar-brand" routerLink=""><i class="fa-solid fa-building-columns"></i>Union Bank</a>
+    </div>
+</nav>
+<h3 style="color: blue;" class="fw-bolder">Mini Statement</h3>
+<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias a eligendi dolor, eos doloribus accusantium rem
+    laboriosam, maiores, ducimus molestiae minus iure dicta possimus explicabo veritatis. Perspiciatis vero voluptate
+    saepe?Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero in consequatur, vitae fugiat inventore illum.
+    Iusto labore tenetur aspernatur asperiores dolor excepturi, atque, corrupti hic explicabo magni nesciunt fugit
+    minima.
+</p>
+<div class="container border rounded p-5 mt-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <h3 class="text-success">All Transactions</h3>
+        </div>
+        <!-- search -->
+        <div class="col-lg-8">
+            <div class="d-flex align-item-center">
+                <label for="tType">Search By :</label>
+                <input name="searchkey" [(ngModel)]="searchkey" id="tType" type="text" placeholder="Transaction Type"
+                    class="form-control ms-3 " style="max-width: 30rem;">
+            </div>
+        </div>
+        <!-- export btn -->
+        <div class="col-lg-1">
+            <input (click)="generatePDF()" type="button" value="Export" class="btn btn-success">
+        </div>
+
+
+    </div>
+    <!-- <tr class="p-2 mb-3 ms-3">
+        <th scope="col">ALL Transactions</th>
+        <th scope="col">search by</th>
+        <input [(ngModel)]="searchkey" name="searchkey" type="text" placeholder="Transaction type">
+        <th></th>
+        <th  scope="col" >Export</th>
+
+    </tr> -->
+
+    <!-- table  -->
+    <table id="transactionHistory" class="table border p-3 mt-5 ">
+        <thead>
+            <tr class="border">
+                <th scope="row">No</th>
+                <td>Transaction Type</td>
+                <td>From Account</td>
+                <td>To Account</td>
+                <td>Amound</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let transaction of allTransactions | search:searchkey :'transactions_type'; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{transaction.transactions_type}}</td>
+                <td>{{transaction.fromAcno}}</td>
+                <td>{{transaction.toAcno}}</td>
+                <td>{{transaction.amount}}</td>
+            </tr>
+
+            <tr *ngIf="(allTransactions | search:searchkey :'transactions_type').length==0 && searchkey!=''" class="p-2">
+                <p class="text-danger fw-bolder">Search Key Not Found!!!</p>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
